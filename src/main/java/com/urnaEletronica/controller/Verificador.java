@@ -38,7 +38,15 @@ public class Verificador {
         listaCandidatos.add(new Candidato("95002", "Cabra Cabriola", "PFolc", "fotos/cabra.jpg"));
         listaCandidatos.add(new Candidato("95003", "Cuca", "PFolc", "fotos/cuca.jpg"));
     }
+        
+        public Candidato bucarPorNumero(String numero){
+            for (Candidato candidato : listaCandidatos){
+                if (candidato.getNumero().equals(numero)){
+                    return candidato;
+                }
+            }
     
+           return null;
     
-    
+}
 }
