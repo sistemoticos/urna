@@ -12,6 +12,14 @@ public class Verificador {
     //adicionando os candidatos
     public Verificador(){
         listaCandidatos = new ArrayList<>();
+        
+        //partido dos esportes
+        listaCandidatos.add(new Candidato("91001", "Golfe", "PEsp", "fotos/golfe.jpg"));
+        listaCandidatos.add(new Candidato("91002", "Beisebol", "PEsp", "fotos/beisebol.jpg"));
+        listaCandidatos.add(new Candidato("91003", "Ginástica Artística", "PEsp", "fotos/ginastica.jpg"));
+        
+        //partido dos ritmos musicais
+        
     }
     
     
