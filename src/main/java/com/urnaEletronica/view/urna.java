@@ -271,7 +271,15 @@ public class urna extends javax.swing.JFrame {
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btnConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmaActionPerformed
-    
+        String numero = campoNumero.getText();
+        
+        if (numero.equals("Branco")) {
+            labelNome.setText("Branco");
+            labelPartido.setText("");
+            labelFoto.setText("");
+            return;
+        }
+            
     }//GEN-LAST:event_btnConfirmaActionPerformed
 
     private void btnCorrigeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrigeActionPerformed
