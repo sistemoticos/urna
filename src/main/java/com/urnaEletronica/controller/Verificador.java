@@ -11,7 +11,7 @@ public class Verificador {
     
     //adicionando os candidatos
     public Verificador(){
-        listaCandidatos = new ArrayList<>();
+        listaCandidatos = new ArrayList<>();//cria lista de candidatos
         
         //partido dos esportes
         listaCandidatos.add(new Candidato("91001", "Golfe", "PEsp", "fotos/golfe.png"));

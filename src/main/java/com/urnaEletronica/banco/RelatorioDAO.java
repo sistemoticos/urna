@@ -9,29 +9,35 @@ import org.bson.Document;
 import java.text.DecimalFormat;
 
 public class RelatorioDAO {
-    private MongoClient mongoClient;
-    private MongoDatabase database;
-    private MongoCollection<Document> colecaoVotos;
-    private DecimalFormat df = new DecimalFormat("0.00");
+    private MongoClient mongoClient;//cliente do mongodb
+    private MongoDatabase database;//banco de dados
+    private MongoCollection<Document> colecaoVotos;//coleção no mongodb
+    private DecimalFormat df = new DecimalFormat("0.00");//formata numero decimal com 2 casas
 
+        //conectaa o banco e seleciona a coleção
     public RelatorioDAO() {
-        mongoClient = MongoClients.create("mongodb://localhost:27017");
-        database = mongoClient.getDatabase("urnaEletronica");
-        colecaoVotos = database.getCollection("votos");
+        mongoClient = MongoClients.create("mongodb://localhost:27017");//conecta no mongo
+        database = mongoClient.getDatabase("urnaEletronica");//seleciona o banco
+        colecaoVotos = database.getCollection("votos");//seleciona a coleção
     }
 
+    //gera o relatorio com a porcentagme e o total de votos
     public String gerarRelatorio() {
-        long total = colecaoVotos.countDocuments();
+        long total = colecaoVotos.countDocuments();//total de votos
 
         //contabranco e nulo
         long brancos = colecaoVotos.countDocuments(new Document("branco", true));
         long nulos   = colecaoVotos.countDocuments(new Document("nulo", true));
 
         //criando o relatorio
-        StringBuilder sb = new StringBuilder();
-        sb.append("Total de votos: ").append(total).append("\n\n");
-
-        //branco e nulo
+        
+        StringBuilder sb = new StringBuilder();//monta o texto do relatorrio
+        sb.append("Total de votos: ").append(total).append("\n\n");//total
+        
+        /*sb é o StringBuilder(montar textos grandes sem usarr mais strings) 
+        e o .append() é o metodo que adiciona um pedaço de texto no final do sb*/
+        
+        //branco e nulo com porcentagem e quantidade
         sb.append("Votos Brancos: ")
           .append(df.format(brancos * 100.0 / total)).append("% (")
           .append(brancos).append(" votos)\n");
@@ -39,22 +45,21 @@ public class RelatorioDAO {
           .append(df.format(nulos * 100.0 / total)).append("% (")
           .append(nulos).append(" votos)\n\n");
 
-        //contar por candidato
-        for (Document doc : colecaoVotos.distinct("numeroVotado", Document.class)) {
-            String numero = doc.getString("_id") != null
-                ? doc.getString("_id")
-                : doc.toJson();
-            // só candidatos válidos
-            if (numero.equalsIgnoreCase("Branco")) continue;
-            long count = colecaoVotos.countDocuments(new Document("numeroVotado", numero)
-                                                        .append("branco", false)
-                                                        .append("nulo", false));
-            sb.append("Candidato (").append(numero).append("): ")
-              .append(df.format(count * 100.0 / total)).append("% (")
-              .append(count).append(" votos)\n");
-        }
+        //numero de candidato distinto na coleção
+        for (String numero : colecaoVotos.distinct("numeroVotado", String.class)) {
+        if (numero.equalsIgnoreCase("Branco")) continue;
 
-        mongoClient.close();
-        return sb.toString();
+        //conta votos válidos para esse candidato (não branco nem nulo)
+        long count = colecaoVotos.countDocuments(new Document("numeroVotado", numero)
+                                            .append("branco", false)
+                                            .append("nulo", false));
+        //adiciona candidato, porcentagem e quantidade de votos
+        sb.append("Candidato (").append(numero).append("): ")
+        .append(df.format(count * 100.0 / total)).append("% (")
+        .append(count).append(" votos)\n");
+}
+
+        mongoClient.close();//fecha conexão
+        return sb.toString();//retorna o relatorio
     }
 }
