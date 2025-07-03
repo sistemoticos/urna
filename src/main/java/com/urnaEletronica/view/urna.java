@@ -2,6 +2,8 @@ package com.urnaEletronica.view;
 
 import com.urnaEletronica.controller.Verificador;
 import com.urnaEletronica.model.Candidato;
+import com.urnaEletronica.banco.VotoDAO;
+import com.urnaEletronica.model.Voto;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -308,26 +310,38 @@ public class urna extends javax.swing.JFrame {
         Verificador verificador = new Verificador();
         Candidato candidato = verificador.buscarPorNumero(numero);
 
-        if (numero.equals("Branco")) {
+        if (numero.equalsIgnoreCase("branco")) {
             labelNome.setText("Branco");
             labelPartido.setText("");
             labelFoto.setIcon(null);
+            
+            Voto votoBranco = new Voto ("Branco", true, false);
+            VotoDAO daoBranco = new VotoDAO();
+            daoBranco.registrarVoto(votoBranco);
+            daoBranco.close();
             return;
         }
          if (numero.equals("99999")) {
         JOptionPane.showMessageDialog(null, "Encerrando votação!");
+        System.exit(0);
         return;
     }
         if (candidato != null) {
             labelNome.setText("Nome: " + candidato.getNome());
             labelPartido.setText("Partido: " + candidato.getPartido());
             mostrarImagem(candidato.getFoto());
-            
+            Voto voto = new Voto(numero, false, false);
+            VotoDAO dao = new VotoDAO();
+            dao.registrarVoto(voto);
+            dao.close();
         } else {
             labelNome.setText("VOTO NULO");
             labelPartido.setText("Número inválido");
             labelFoto.setIcon(null);
-            
+            Voto voto = new Voto(numero, false, true);
+            VotoDAO dao = new VotoDAO();
+            dao.registrarVoto(voto);
+            dao.close();
         }
     }//GEN-LAST:event_btnConfirmaActionPerformed
 
