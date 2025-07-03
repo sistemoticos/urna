@@ -1,5 +1,8 @@
 package com.urnaEletronica.view;
 
+import com.urnaEletronica.controller.Verificador;
+import com.urnaEletronica.model.Candidato;
+import javax.swing.JOptionPane;
 
 public class urna extends javax.swing.JFrame {
     
@@ -272,14 +275,30 @@ public class urna extends javax.swing.JFrame {
 
     private void btnConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmaActionPerformed
         String numero = campoNumero.getText();
-        
+        Verificador verificador = new Verificador();
+        Candidato candidato = verificador.buscarPorNumero(numero);
+
         if (numero.equals("Branco")) {
             labelNome.setText("Branco");
             labelPartido.setText("");
             labelFoto.setText("");
             return;
         }
+         if (numero.equals("99999")) {
+        JOptionPane.showMessageDialog(null, "Encerrando votação!");
+        return;
+    }
+        if (candidato != null) {
+            labelNome.setText("Nome: " + candidato.getNome());
+            labelPartido.setText("Partido: " + candidato.getPartido());
+            labelFoto.setText("Foto: " + candidato.getFoto());
             
+        } else {
+            labelNome.setText("VOTO NULO");
+            labelPartido.setText("Número inválido");
+            labelFoto.setText("");
+            
+        }
     }//GEN-LAST:event_btnConfirmaActionPerformed
 
     private void btnCorrigeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrigeActionPerformed
@@ -287,6 +306,7 @@ public class urna extends javax.swing.JFrame {
         labelNome.setText("");
         labelPartido.setText("");
         labelFoto.setText("");
+
     }//GEN-LAST:event_btnCorrigeActionPerformed
 
     private void btnBrancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrancoActionPerformed
