@@ -1,5 +1,6 @@
 package com.urnaEletronica.view;
 
+import com.urnaEletronica.banco.RelatorioDAO;
 import com.urnaEletronica.controller.Verificador;
 import com.urnaEletronica.model.Candidato;
 import com.urnaEletronica.banco.VotoDAO;
@@ -266,43 +267,73 @@ public class urna extends javax.swing.JFrame {
     }//GEN-LAST:event_campoNumeroActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
-       campoNumero.setText(campoNumero.getText()+ "0");
+        if (campoNumero.getText().equals("Digite seu voto") || campoNumero.getText().equals("Branco")) {
+            campoNumero.setText("");
+        }
+        campoNumero.setText(campoNumero.getText() + "0");
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
-       campoNumero.setText(campoNumero.getText()+ "9");
+       if (campoNumero.getText().equals("Digite seu voto") || campoNumero.getText().equals("Branco")) {
+            campoNumero.setText("");
+        }
+        campoNumero.setText(campoNumero.getText() + "9");
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
-       campoNumero.setText(campoNumero.getText()+ "7");
+       if (campoNumero.getText().equals("Digite seu voto") || campoNumero.getText().equals("Branco")) {
+            campoNumero.setText("");
+        }
+        campoNumero.setText(campoNumero.getText() + "7");
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
-       campoNumero.setText(campoNumero.getText()+ "6");
+        if (campoNumero.getText().equals("Digite seu voto") || campoNumero.getText().equals("Branco")) {
+            campoNumero.setText("");
+        }
+        campoNumero.setText(campoNumero.getText() + "6");
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
-       campoNumero.setText(campoNumero.getText()+ "8");
+        if (campoNumero.getText().equals("Digite seu voto") || campoNumero.getText().equals("Branco")) {
+            campoNumero.setText("");
+        }
+        campoNumero.setText(campoNumero.getText() + "8");
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-       campoNumero.setText(campoNumero.getText()+ "5");
+        if (campoNumero.getText().equals("Digite seu voto") || campoNumero.getText().equals("Branco")) {
+            campoNumero.setText("");
+        }
+        campoNumero.setText(campoNumero.getText() + "5");
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
-       campoNumero.setText(campoNumero.getText()+ "4");
+        if (campoNumero.getText().equals("Digite seu voto") || campoNumero.getText().equals("Branco")) {
+            campoNumero.setText("");
+        }
+        campoNumero.setText(campoNumero.getText() + "4");
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
-       campoNumero.setText(campoNumero.getText()+ "3");
+        if (campoNumero.getText().equals("Digite seu voto") || campoNumero.getText().equals("Branco")) {
+            campoNumero.setText("");
+        }
+        campoNumero.setText(campoNumero.getText() + "3");
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-        campoNumero.setText(campoNumero.getText()+ "2");
+         if (campoNumero.getText().equals("Digite seu voto") || campoNumero.getText().equals("Branco")) {
+            campoNumero.setText("");
+        }
+        campoNumero.setText(campoNumero.getText() + "2");
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        campoNumero.setText(campoNumero.getText()+ "1");
+         if (campoNumero.getText().equals("Digite seu voto") || campoNumero.getText().equals("Branco")) {
+            campoNumero.setText("");
+        }
+        campoNumero.setText(campoNumero.getText() + "1");
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btnConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmaActionPerformed
@@ -322,8 +353,11 @@ public class urna extends javax.swing.JFrame {
             return;
         }
          if (numero.equals("99999")) {
-        JOptionPane.showMessageDialog(null, "Encerrando votação!");
-        System.exit(0);
+             RelatorioDAO relDao = new RelatorioDAO();
+             String relatorio = relDao.gerarRelatorio();
+             JOptionPane.showMessageDialog(this, relatorio,
+                     "Relatório Final", JOptionPane.INFORMATION_MESSAGE);
+             System.exit(0);
         return;
     }
         if (candidato != null) {
