@@ -49,4 +49,8 @@ public class Verificador {
            return null;
     
 }
+        //retorna lista completa de candidatos
+        public List<Candidato> getTodosCandidatos() {
+            return listaCandidatos;
+        }
 }
