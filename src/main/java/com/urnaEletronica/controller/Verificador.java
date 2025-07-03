@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Verificador {
-    //lista pra armazenar os candidatos que vão estar disponiveis
+    
+   //lista pra armazenar os candidatos que vão estar disponiveis
     private List<Candidato> listaCandidatos;
     
     //adicionando os candidatos
@@ -39,7 +40,7 @@ public class Verificador {
         listaCandidatos.add(new Candidato("95003", "Cuca", "PFolc", "fotos/cuca.jpg"));
     }
         
-        public Candidato bucarPorNumero(String numero){
+        public Candidato buscarPorNumero(String numero){
             for (Candidato candidato : listaCandidatos){
                 if (candidato.getNumero().equals(numero)){
                     return candidato;
