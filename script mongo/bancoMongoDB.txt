@@ -1,0 +1,109 @@
+use urnaEletronica
+
+db.candidatos.insertMany([
+  {
+    _id: 91001,
+    siglaPart: 'PEsp',
+    nome: 'Golfe',
+    numero: 91001,
+    qtdVotos: 0
+  },
+  {
+    _id: 91002,
+    siglaPart: 'PEsp',
+    nome: 'Beisebol',
+    numero: 91002,
+    qtdVotos: 0
+  },
+  {
+    _id: 91003,
+    siglaPart: 'PEsp',
+    nome: 'Ginástica Artística',
+    numero: 91003,
+    qtdVotos: 0
+  },
+  {
+    _id: 92001,
+    siglaPart: 'PMus',
+    nome: 'Rock',
+    numero: 92001,
+    qtdVotos: 0
+  },
+  {
+    _id: 92002,
+    siglaPart: 'PMus',
+    nome: 'Sertanejo',
+    numero: 92002,
+    qtdVotos: 0
+  },
+  {
+    _id: 92003,
+    siglaPart: 'PMus',
+    nome: 'Música Popular Brasileira',
+    numero: 92003,
+    qtdVotos: 0
+  },
+  {
+    _id: 93001,
+    siglaPart: 'PProf',
+    nome: 'Astronauta',
+    numero: 93001,
+    qtdVotos: 0
+  },
+  {
+    _id: 93002,
+    siglaPart: 'PProf',
+    nome: 'Pintor',
+    numero: 93002,
+    qtdVotos: 0
+  },
+  {
+    _id: 93003,
+    siglaPart: 'PProf',
+    nome: 'Enfermeira',
+    numero: 93003,
+    qtdVotos: 0
+  },
+  {
+    _id: 94001,
+    siglaPart: 'PFest',
+    nome: 'Páscoa',
+    numero: 94001,
+    qtdVotos: 0
+  },
+  {
+    _id: 94002,
+    siglaPart: 'PFest',
+    nome: 'Oktoberfest',
+    numero: 94002,
+    qtdVotos: 0
+  },
+  {
+    _id: 94003,
+    siglaPart: 'PFest',
+    nome: 'Reveillon',
+    numero: 94003,
+    qtdVotos: 0
+  },
+  {
+    _id: 95001,
+    siglaPart: 'PFolc',
+    nome: 'Curupira',
+    numero: 95001,
+    qtdVotos: 0
+  },
+  {
+    _id: 95002,
+    siglaPart: 'PFolc',
+    nome: 'Cabra Cabriola',
+    numero: 95002,
+    qtdVotos: 0
+  },
+  {
+    _id: 95003,
+    siglaPart: 'PFolc',
+    nome: 'Cuca',
+    numero: 95003,
+    qtdVotos: 0
+  }
+])
